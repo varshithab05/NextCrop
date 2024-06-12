@@ -56,7 +56,7 @@ The Crop Prediction Web Application is a tool designed to predict the best crop 
 
 1. **Navigate to the frontend directory**:
     ```bash
-    cd ../frontend
+    cd ../client
     ```
 
 2. **Install dependencies**:
@@ -66,7 +66,7 @@ The Crop Prediction Web Application is a tool designed to predict the best crop 
 
 3. **Start the React development server**:
     ```bash
-    npm start
+    npm run dev
     ```
 
 ## Usage
