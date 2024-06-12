@@ -123,7 +123,7 @@ input{
 }
 .reset-btn{
   padding: 5px 10px;
-  width: 10%;
+  width: 80px;
   margin-left: 10px;
   margin-top: 5px;
   color: rgb(0, 0, 0);
@@ -131,4 +131,47 @@ input{
   border: none;
   padding: 5px 10px;
   border-radius: 3px;
+}
+@media (max-width:1025px) {
+  .man-img{
+    display: none;
+  }
+  .input-fields{
+    width: 96%;
+  }
+  .main-heading{
+    font-size: 30px;
+  }
+  .main-heading span{
+    font-size: 60px;
+  }
+}
+@media (max-width:769px) {
+  .man-img{
+    display: flex;
+  }
+  .heading img{
+    display: none;
+  }
+  .heading{
+    align-items: flex-start;
+  }
+  .form-content{
+    margin-top: 0px;
+  }
+  .content{
+    display: flex;
+    flex-direction: column;
+  }
+  .input-fields{
+    width: 70%;
+  }
+}
+@media (max-width:426px) {
+  .man-img{
+    display: none;
+  }
+  .input-fields{
+    width: 90%;
+  }
 }
