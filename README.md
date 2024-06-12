@@ -13,9 +13,9 @@ The Crop Prediction Web Application is a tool designed to predict the best crop 
 
 ## Technologies Used
 
-- **Front-end**: React, HTML, CSS, JavaScript
+- **Front-end**: React,JavaScript
 - **Back-end**: Flask, Python
-- **Machine Learning**: Pandas, Scikit-learn, Pickle
+- **Machine Learning**: Pandas, Scikit-learn, Pickle , xgboost
 - **Other**: Flask-CORS for handling cross-origin requests
 
 ## Getting Started
