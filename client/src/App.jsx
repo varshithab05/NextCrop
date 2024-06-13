@@ -2,18 +2,19 @@ import { useState } from 'react'
 import './App.css'
 
 function App() {
-  const [isLoading,setIsLoading] = useState(false);
-  const [formData,setFormData] = useState({
-    Nitrogen:0,
-    Phosphorus:0,
-    Potassium:0,
-    Temperature:0,
-    Humidity:0,
-    pH_Value:0,
-    Rainfall:0
+  const [isLoading, setIsLoading] = useState(false);
+  const [formData, setFormData] = useState({
+    Nitrogen: 0,
+    Phosphorus: 0,
+    Potassium: 0,
+    Temperature: 0,
+    Humidity: 0,
+    pH_Value: 0,
+    Rainfall: 0
   });
-  const [result,setResult] = useState('');
-  const [showSpan,setShowSpan] = useState(false);
+  const [result, setResult] = useState('');
+  const [showSpan, setShowSpan] = useState(false);
+  const [errorMessage, setErrorMessage] = useState('');
 
   const handleChange = (event) => {
     const value = event.target.value;
@@ -22,11 +23,24 @@ function App() {
     inputData[name] = value;
     setFormData(inputData);
   };
-  const handlereset=(event)=>{
+
+  const handlereset = (event) => {
     window.location.reload();
   };
 
-  const handlePredictClick = () => {
+  const handlePredictClick = (event) => {
+    event.preventDefault(); // Prevent form from submitting and reloading the page
+
+    // Check if all fields are filled
+    for (let key in formData) {
+      if (formData[key] === 0 || formData[key] === '') {
+        setErrorMessage('Please fill out each field in the form completely.');
+        setShowSpan(false);
+        return;
+      }
+    }
+
+    setErrorMessage('');
     const url = "https://nextcrop.onrender.com/predict";
     setIsLoading(true);
     const jsonData = JSON.stringify(formData);
@@ -55,78 +69,81 @@ function App() {
           <nav className="navbar bg-light">
             <div className="container-fluid logo-cont">
               <a className="navbar-brand" href="#">
-                <img src="./NextCrop_logo.png" alt="Logo" width="50" height="40" className="d-inline-block align-text-top"  />
+                <img src="./NextCrop_logo.png" alt="Logo" width="50" height="40" className="d-inline-block align-text-top" />
                 <div className='logo-name'>Next Crop</div>
               </a>
             </div>
           </nav>
         </div>
-        <img src="/man.png" alt="man" height={500} className='man-img'/>
+        <img src="/man.png" alt="man" height={500} className='man-img' />
         <div className='content'>
           <div className='heading'>
             <h1 className='main-heading'>Predict your <br></br><span>NEXT CROP</span> here ,</h1>
             <img src="/Seeding.gif" alt="gif" height={420} />
           </div>
           <div className='form-content'>
-            <form method="post" acceptCharset="utf-8" name="Modelform">
+            <form method="post" acceptCharset="utf-8" name="Modelform" onSubmit={handlePredictClick}>
               <div className='input-fields'>
                 <label htmlFor="Nitrogen" className='n-label'>
                   Nitrogen
                 </label>
-                <input type="number" required name="Nitrogen" id="Nitrogen" 
+                <input type="number" name="Nitrogen" id="Nitrogen"
                   onChange={handleChange} />
               </div>
               <div className='input-fields'>
                 <label htmlFor="Phosphorus" className='p-label'>
                   Phosphorus
                 </label>
-                <input type="number" required name="Phosphorus" id="Phosphorus" 
+                <input type="number" name="Phosphorus" id="Phosphorus"
                   onChange={handleChange} />
               </div>
               <div className='input-fields'>
                 <label htmlFor="Potassium" className='k-label'>
                   Potassium
                 </label>
-                <input type="number" required name="Potassium" id="Potassium" 
+                <input type="number" name="Potassium" id="Potassium"
                   onChange={handleChange} />
               </div>
               <div className='input-fields'>
                 <label htmlFor="Temperature" className='temp-label'>
                   Temperature
                 </label>
-                <input type="number" required name="Temperature" id="Temperature" 
+                <input type="number" name="Temperature" id="Temperature"
                   onChange={handleChange} />
               </div>
               <div className='input-fields'>
                 <label htmlFor="Humidity" className='humid-label'>
                   Humidity
                 </label>
-                <input type="number" required name="Humidity" id="Humidity" 
+                <input type="number" name="Humidity" id="Humidity"
                   onChange={handleChange} />
               </div>
               <div className='input-fields'>
                 <label htmlFor="pH_Value" className='ph-label'>
                   pH_Value
                 </label>
-                <input type="number" required name="pH_Value" id="pH_Value" 
+                <input type="number" name="pH_Value" id="pH_Value"
                   onChange={handleChange} />
               </div>
               <div className='input-fields'>
                 <label htmlFor="Rainfall" className='rain-label'>
                   Rainfall
                 </label>
-                <input type="number" required name="Rainfall" id="Rainfall" 
+                <input type="number" name="Rainfall" id="Rainfall"
                   onChange={handleChange} />
               </div>
               <div>
                 <button className='predict-btn'
-                disabled={isLoading} onClick={!isLoading ? handlePredictClick:null}>
+                  disabled={isLoading}>
                   Predict crop
                 </button>
                 <input type="reset" value="Reset" className='reset-btn' onClick={handlereset} />
               </div>
             </form>
             <div className="results">
+              {errorMessage && (
+                <p className="error-message">{errorMessage}</p>
+              )}
               <h4>
                 {showSpan && (
                   <span id="prediction">
