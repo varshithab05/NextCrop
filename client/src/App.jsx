@@ -4,13 +4,13 @@ import './App.css'
 function App() {
   const [isLoading, setIsLoading] = useState(false);
   const [formData, setFormData] = useState({
-    Nitrogen: 0,
-    Phosphorus: 0,
-    Potassium: 0,
-    Temperature: 0,
-    Humidity: 0,
-    pH_Value: 0,
-    Rainfall: 0
+    Nitrogen: '',
+    Phosphorus: '',
+    Potassium: '',
+    Temperature: '',
+    Humidity: '',
+    pH_Value: '',
+    Rainfall: ''
   });
   const [result, setResult] = useState('');
   const [showSpan, setShowSpan] = useState(false);
@@ -33,7 +33,7 @@ function App() {
 
     // Check if all fields are filled
     for (let key in formData) {
-      if (formData[key] === 0 || formData[key] === '') {
+      if (formData[key] === '') {
         setErrorMessage('Please fill out each field in the form completely.');
         setShowSpan(false);
         return;
@@ -41,9 +41,22 @@ function App() {
     }
 
     setErrorMessage('');
+    
+    // Parse form data as floats
+    const parsedFormData = {
+      Nitrogen: parseFloat(formData.Nitrogen),
+      Phosphorus: parseFloat(formData.Phosphorus),
+      Potassium: parseFloat(formData.Potassium),
+      Temperature: parseFloat(formData.Temperature),
+      Humidity: parseFloat(formData.Humidity),
+      pH_Value: parseFloat(formData.pH_Value),
+      Rainfall: parseFloat(formData.Rainfall)
+    };
+
     const url = "https://nextcrop.onrender.com/predict";
     setIsLoading(true);
-    const jsonData = JSON.stringify(formData);
+    const jsonData = JSON.stringify(parsedFormData);
+
     // Fetch request to the Flask backend
     fetch(url, {
       headers: {
@@ -87,49 +100,49 @@ function App() {
                 <label htmlFor="Nitrogen" className='n-label'>
                   Nitrogen
                 </label>
-                <input type="number" name="Nitrogen" id="Nitrogen"
+                <input type="text" name="Nitrogen" id="Nitrogen"
                   onChange={handleChange} />
               </div>
               <div className='input-fields'>
                 <label htmlFor="Phosphorus" className='p-label'>
                   Phosphorus
                 </label>
-                <input type="number" name="Phosphorus" id="Phosphorus"
+                <input type="text" name="Phosphorus" id="Phosphorus"
                   onChange={handleChange} />
               </div>
               <div className='input-fields'>
                 <label htmlFor="Potassium" className='k-label'>
                   Potassium
                 </label>
-                <input type="number" name="Potassium" id="Potassium"
+                <input type="text" name="Potassium" id="Potassium"
                   onChange={handleChange} />
               </div>
               <div className='input-fields'>
                 <label htmlFor="Temperature" className='temp-label'>
                   Temperature
                 </label>
-                <input type="number" name="Temperature" id="Temperature"
+                <input type="text" name="Temperature" id="Temperature"
                   onChange={handleChange} />
               </div>
               <div className='input-fields'>
                 <label htmlFor="Humidity" className='humid-label'>
                   Humidity
                 </label>
-                <input type="number" name="Humidity" id="Humidity"
+                <input type="text" name="Humidity" id="Humidity"
                   onChange={handleChange} />
               </div>
               <div className='input-fields'>
                 <label htmlFor="pH_Value" className='ph-label'>
                   pH_Value
                 </label>
-                <input type="number" name="pH_Value" id="pH_Value"
+                <input type="text" name="pH_Value" id="pH_Value"
                   onChange={handleChange} />
               </div>
               <div className='input-fields'>
                 <label htmlFor="Rainfall" className='rain-label'>
                   Rainfall
                 </label>
-                <input type="number" name="Rainfall" id="Rainfall"
+                <input type="text" name="Rainfall" id="Rainfall"
                   onChange={handleChange} />
               </div>
               <div>
