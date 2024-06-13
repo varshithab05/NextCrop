@@ -27,7 +27,7 @@ function App() {
   };
 
   const handlePredictClick = () => {
-    const url = "http://localhost:5000/predict";
+    const url = "https://nextcrop.onrender.com/predict";
     setIsLoading(true);
     const jsonData = JSON.stringify(formData);
     // Fetch request to the Flask backend
