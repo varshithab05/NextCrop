@@ -73,49 +73,49 @@ function App() {
                 <label htmlFor="Nitrogen" className='n-label'>
                   Nitrogen
                 </label>
-                <input type="number" name="Nitrogen" id="Nitrogen" 
+                <input type="number" required name="Nitrogen" id="Nitrogen" 
                   onChange={handleChange} />
               </div>
               <div className='input-fields'>
                 <label htmlFor="Phosphorus" className='p-label'>
                   Phosphorus
                 </label>
-                <input type="number" name="Phosphorus" id="Phosphorus" 
+                <input type="number" required name="Phosphorus" id="Phosphorus" 
                   onChange={handleChange} />
               </div>
               <div className='input-fields'>
                 <label htmlFor="Potassium" className='k-label'>
                   Potassium
                 </label>
-                <input type="number" name="Potassium" id="Potassium" 
+                <input type="number" required name="Potassium" id="Potassium" 
                   onChange={handleChange} />
               </div>
               <div className='input-fields'>
                 <label htmlFor="Temperature" className='temp-label'>
                   Temperature
                 </label>
-                <input type="number" name="Temperature" id="Temperature" 
+                <input type="number" required name="Temperature" id="Temperature" 
                   onChange={handleChange} />
               </div>
               <div className='input-fields'>
                 <label htmlFor="Humidity" className='humid-label'>
                   Humidity
                 </label>
-                <input type="number" name="Humidity" id="Humidity" 
+                <input type="number" required name="Humidity" id="Humidity" 
                   onChange={handleChange} />
               </div>
               <div className='input-fields'>
                 <label htmlFor="pH_Value" className='ph-label'>
                   pH_Value
                 </label>
-                <input type="number" name="pH_Value" id="pH_Value" 
+                <input type="number" required name="pH_Value" id="pH_Value" 
                   onChange={handleChange} />
               </div>
               <div className='input-fields'>
                 <label htmlFor="Rainfall" className='rain-label'>
                   Rainfall
                 </label>
-                <input type="number" name="Rainfall" id="Rainfall" 
+                <input type="number" required name="Rainfall" id="Rainfall" 
                   onChange={handleChange} />
               </div>
               <div>
