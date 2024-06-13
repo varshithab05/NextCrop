@@ -1,5 +1,3 @@
-![image](https://github.com/varshithab05/NextCrop/assets/117563974/14be7b2a-6682-4441-a754-ab63e2faeaac)# Crop Prediction Web Application
-
 ## Overview
 
 The Crop Prediction Web Application is a tool designed to predict the best crop to grow based on various environmental factors. The application is built using a React front-end and a Flask back-end, leveraging a machine learning model for the prediction.
